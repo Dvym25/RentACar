@@ -26,7 +26,6 @@ object Backend {
     }
 
     private fun updateUserData(withSignedInStatus: Boolean) {
-        // Replace with appropriate logic to update user data
         // UserData.setSignedIn(withSignedInStatus)
     }
 
