@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-rentacar-dev-ce6db-authRole",
+      "UnauthRoleArn": "arn:aws:iam::017820685829:role/amplify-rentacar-dev-ce6db-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::017820685829:role/amplify-rentacar-dev-ce6db-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-rentacar-dev-ce6db-deployment",
+      "UnauthRoleName": "amplify-rentacar-dev-ce6db-unauthRole",
+      "StackName": "amplify-rentacar-dev-ce6db",
+      "StackId": "arn:aws:cloudformation:us-east-1:017820685829:stack/amplify-rentacar-dev-ce6db/dce9d820-503b-11ef-9858-0e32238b4aad",
+      "AmplifyAppId": "do9mhczamdj0j"
+    }
+  }
+}
