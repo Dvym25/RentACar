@@ -1,3 +1,35 @@
 <resources>
-    <string name="app_name">RentACar</string>
+    <string name="app_name">Car Rental App</string>
+    <string-array name="car_types_array">
+        <item>Hatchback</item>
+        <item>SUV</item>
+        <item>Sedan</item>
+        <item>Pick-up Truck</item>
+        <item>Van</item>
+        <item>Sports</item>
+        <item>Muscle</item>
+    </string-array>
+    <string-array name="number_of_seats_array">
+        <item>2 seater</item>
+        <item>4 seater</item>
+        <item>5 seater</item>
+        <item>7 seater</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="car_colors_array">
+        <item>Red</item>
+        <item>Orange</item>
+        <item>Yellow</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>Black</item>
+        <item>White</item>
+        <item>Brown</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="theme_options">
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+
 </resources>
