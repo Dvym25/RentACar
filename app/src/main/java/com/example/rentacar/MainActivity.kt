@@ -10,11 +10,21 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        // Check if user is signed in
+        if (FirebaseAuth.getInstance().currentUser == null) {
+            loadFragment(SignInFragment()) // Load SignInFragment
+        } else {
+            loadMainFragment() // Load the main fragment
+        }
+
         setContentView(R.layout.activity_main)
         val bottomMenuOptions: Toolbar = findViewById(R.id.bottom_toolbar)
         setSupportActionBar(bottomMenuOptions)
@@ -44,6 +54,11 @@ class MainActivity : AppCompatActivity() {
             loadFragment(SettingsFragment())
         }
     }
+
+    private fun loadMainFragment() {
+        loadFragment(HomePageFragment())
+    }
+
     private fun loadFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
@@ -58,7 +73,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
+        return when (item.itemId) {
+            R.id.action_sign_out -> {
+                AuthUI.getInstance()
+                    .signOut(this)
+                    .addOnCompleteListener {
+                        // User is signed out
+                        loadFragment(SignInFragment()) // Load SignInFragment
+                    }
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
+
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return super.onOptionsItemSelected(item)
+//    }
 
 }
