@@ -1,73 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:padding="8dp">
 
     <TextView
-        android:id="@+id/typeOfCar"
+        android:id="@+id/textViewCarType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Type of Car"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Sedan" />
+        android:text="Car Type" />
 
     <TextView
-        android:id="@+id/numberOfSeats"
+        android:id="@+id/textViewCarSeats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Number of Seats"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/typeOfCar"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="4 Seater" />
+        android:text="Car Seats" />
 
     <TextView
-        android:id="@+id/carColor"
+        android:id="@+id/textViewCarColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Car Color"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numberOfSeats"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Red" />
+        android:text="Car Color" />
 
     <TextView
-        android:id="@+id/carCompany"
+        android:id="@+id/textViewCarCompany"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Car Company"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carColor"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Toyota" />
+        android:text="Car Company" />
 
     <TextView
-        android:id="@+id/pricePerDay"
+        android:id="@+id/textViewCarPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Price Per Day"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carCompany"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="$50" />
-
-    <Button
-        android:id="@+id/bookNowButton"
+        android:text="Car Price" />
+    <ImageButton
+        android:id="@+id/buttonDelete"
+        android:src="@drawable/ic_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Book Now"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pricePerDay" />
+        android:text="Delete" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

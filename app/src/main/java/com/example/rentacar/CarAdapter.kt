@@ -4,39 +4,33 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.Button
+import android.widget.ArrayAdapter
+import android.widget.ImageButton
 import android.widget.TextView
 
-class CarAdapter(private val context: Context, private val carList: List<Car>) : BaseAdapter() {
-
-    override fun getCount(): Int = carList.size
-
-    override fun getItem(position: Int): Any = carList[position]
-
-    override fun getItemId(position: Int): Long = position.toLong()
+class CarAdapter(
+    context: Context,
+    private val carList: List<Car>,
+    private val onDeleteClick: (String) -> Unit
+) : ArrayAdapter<Car>(context, 0, carList) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val car = getItem(position) as Car
-        val view: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.list_item_car, parent, false)
+        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.list_item_car, parent, false)
+        val car = carList[position]
 
-        val typeOfCar: TextView = view.findViewById(R.id.typeOfCar)
-        val numberOfSeats: TextView = view.findViewById(R.id.numberOfSeats)
-        val carColor: TextView = view.findViewById(R.id.carColor)
-        val carCompany: TextView = view.findViewById(R.id.carCompany)
-        val pricePerDay: TextView = view.findViewById(R.id.pricePerDay)
-        val bookNowButton: Button = view.findViewById(R.id.bookNowButton)
+        view.findViewById<TextView>(R.id.textViewCarType).text = "Type:           " + car.type
+        view.findViewById<TextView>(R.id.textViewCarSeats).text = "Seats:          " + car.seats
+        view.findViewById<TextView>(R.id.textViewCarColor).text = "Colors:         " +car.color
+        view.findViewById<TextView>(R.id.textViewCarCompany).text = "Company:   " + car.company
+        view.findViewById<TextView>(R.id.textViewCarPrice).text = "Price:           " + "$"+car.price + " /Day"
 
-        typeOfCar.text = car.typeOfCar
-        numberOfSeats.text = car.numberOfSeats
-        carColor.text = car.carColor
-        carCompany.text = car.carCompany
-        pricePerDay.text = car.pricePerDay
-
-        bookNowButton.setOnClickListener {
-            // Handle book now button click
+        view.findViewById<ImageButton>(R.id.buttonDelete).setOnClickListener {
+            onDeleteClick(car.id)
         }
 
         return view
     }
 }
+
+
+
