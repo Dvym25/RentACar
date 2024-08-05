@@ -1,13 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Light Theme -->
     <style name="AppTheme.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Customize your light theme here -->
-    </style>
-
-    <!-- Dark Theme -->
-    <style name="AppTheme.Dark" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Customize your dark theme here -->
+        <item name="colorPrimary">@color/colorPrimaryLight</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariantLight</item>
+        <item name="colorOnPrimary">@color/colorOnPrimaryLight</item>
+        <item name="colorSecondary">@color/colorSecondaryLight</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariantLight</item>
+        <item name="colorOnSecondary">@color/colorOnSecondaryLight</item>
+        <item name="android:colorBackground">@color/colorBackgroundLight</item>
+        <item name="colorSurface">@color/colorSurfaceLight</item>
+        <item name="colorOnSurface">@color/colorOnSurfaceLight</item>
+        <item name="colorError">@color/colorErrorLight</item>
+        <item name="colorOnError">@color/colorOnErrorLight</item>
+        <item name="colorOnBackground">@color/colorOnBackgroundLight</item>
     </style>
 
 </resources>

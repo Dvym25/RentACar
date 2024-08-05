@@ -15,7 +15,9 @@ class HomePageFragment : Fragment(R.layout.homepage) {
 
     private lateinit var greetingsText: TextView
     private lateinit var profilePic: ImageView
-    private lateinit var user_phone : TextView
+    private lateinit var userPhone: TextView
+    private lateinit var userEmail: TextView
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,16 +25,15 @@ class HomePageFragment : Fragment(R.layout.homepage) {
         val view = inflater.inflate(R.layout.homepage, container, false)
         greetingsText = view.findViewById(R.id.greetings)
         profilePic = view.findViewById(R.id.profilePic)
-        user_phone = view.findViewById(R.id.user_phone)
+        userPhone = view.findViewById(R.id.user_phone)
+        userEmail = view.findViewById(R.id.user_email)
 
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
-            if (user.phoneNumber != ""){
-                user_phone.text = user.phoneNumber
-            }
-            else {
-                user_phone.text = "NOT PROVIDED"
-            }
+            userPhone.text = user.phoneNumber ?: "NOT PROVIDED"
+
+            userEmail.text = user.email ?: "NOT PROVIDED"
+
             user.photoUrl?.let {
                 Picasso.get().load(it).into(profilePic)
             }
@@ -40,7 +41,6 @@ class HomePageFragment : Fragment(R.layout.homepage) {
             greetingsText.text = "Welcome, $userName!"
             Log.d("ProfilePic", "Photo URL: ${user.photoUrl}")
         } else {
-            // User is not signed in, show SignInFragment
             showSignInFragment()
         }
 
