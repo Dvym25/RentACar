@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
@@ -34,8 +35,10 @@ class SignInFragment : Fragment() {
     private fun startSignIn() {
         val signInIntent = AuthUI.getInstance()
             .createSignInIntentBuilder()
-            .setAvailableProviders(listOf(AuthUI.IdpConfig.EmailBuilder().build(),
-                AuthUI.IdpConfig.GoogleBuilder().build()))
+            .setAvailableProviders(listOf(
+                AuthUI.IdpConfig.EmailBuilder().build(),
+                AuthUI.IdpConfig.GoogleBuilder().build()
+            ))
             .build()
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
@@ -48,11 +51,11 @@ class SignInFragment : Fragment() {
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
                 val user = FirebaseAuth.getInstance().currentUser
-                // Load the MainActivity after successful sign-in
+
                 (activity as MainActivity).loadMainFragment()
             } else {
                 // Sign-in failed
-                // Handle error
+                Toast.makeText(context, "Sign-in failed: ${response?.error?.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }

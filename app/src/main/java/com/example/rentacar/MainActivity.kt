@@ -4,25 +4,24 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
-import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
+
+    private val sharedViewModel: SharedViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
 
-        // Check if user is signed in
         if (FirebaseAuth.getInstance().currentUser == null) {
-            loadFragment(SignInFragment()) // Load SignInFragment
+            loadFragment(SignInFragment())
         } else {
-            loadMainFragment() // Load the main fragment
+            loadMainFragment()
         }
 
         setContentView(R.layout.activity_main)
@@ -30,32 +29,25 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(bottomMenuOptions)
         val topMenuOptions: Toolbar = findViewById(R.id.top_toolbar)
         setSupportActionBar(topMenuOptions)
-        val homeIcon: ImageView = findViewById(R.id.ic_home)
-        val addIcon: ImageView = findViewById(R.id.ic_add)
-        val searchIcon: ImageView = findViewById(R.id.ic_search)
-        val settingsIcon: ImageView = findViewById(R.id.ic_settings)
 
-        // Load the default fragment
-        loadFragment(HomePageFragment())
-
-        homeIcon.setOnClickListener {
+        findViewById<ImageView>(R.id.ic_home).setOnClickListener {
             loadFragment(HomePageFragment())
         }
 
-        addIcon.setOnClickListener {
+        findViewById<ImageView>(R.id.ic_add).setOnClickListener {
             loadFragment(AddVehicleFragment())
         }
 
-        searchIcon.setOnClickListener {
+        findViewById<ImageView>(R.id.ic_search).setOnClickListener {
             loadFragment(SearchVehicleFragment())
         }
 
-        settingsIcon.setOnClickListener {
+        findViewById<ImageView>(R.id.ic_settings).setOnClickListener {
             loadFragment(SettingsFragment())
         }
     }
 
-    private fun loadMainFragment() {
+    public fun loadMainFragment() {
         loadFragment(HomePageFragment())
     }
 
@@ -65,31 +57,22 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean
-    {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.top_menu,menu)
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.top_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_sign_out -> {
+            R.id.sign_out -> {
                 AuthUI.getInstance()
                     .signOut(this)
                     .addOnCompleteListener {
-                        // User is signed out
-                        loadFragment(SignInFragment()) // Load SignInFragment
+                        loadFragment(SignInFragment())
                     }
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return super.onOptionsItemSelected(item)
-//    }
-
 }

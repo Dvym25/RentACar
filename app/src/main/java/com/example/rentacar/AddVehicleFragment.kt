@@ -6,18 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.snackbar.Snackbar
 
 class AddVehicleFragment : Fragment(R.layout.fragment_add_vehicle) {
+
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_vehicle, container, false)
 
-        // Set up car type spinner
         val carTypeSpinner: Spinner = view.findViewById(R.id.add_sp_car_type)
         ArrayAdapter.createFromResource(
             requireContext(),
@@ -28,7 +29,6 @@ class AddVehicleFragment : Fragment(R.layout.fragment_add_vehicle) {
             carTypeSpinner.adapter = adapter
         }
 
-        // Set up number of seats spinner
         val seatsSpinner: Spinner = view.findViewById(R.id.add_sp_seats)
         ArrayAdapter.createFromResource(
             requireContext(),
@@ -39,7 +39,6 @@ class AddVehicleFragment : Fragment(R.layout.fragment_add_vehicle) {
             seatsSpinner.adapter = adapter
         }
 
-        // Set up car color spinner
         val colorSpinner: Spinner = view.findViewById(R.id.add_sp_color)
         ArrayAdapter.createFromResource(
             requireContext(),
@@ -50,23 +49,25 @@ class AddVehicleFragment : Fragment(R.layout.fragment_add_vehicle) {
             colorSpinner.adapter = adapter
         }
 
-        // Get references to the EditTexts
         val companyEditText: EditText = view.findViewById(R.id.editTextCompany)
         val priceEditText: EditText = view.findViewById(R.id.editTextPrice)
 
-        // Set up the Add Vehicle button
         val addButton: Button = view.findViewById(R.id.button)
         addButton.setOnClickListener {
-            // Get the selected items and entered text
             val selectedCarType = carTypeSpinner.selectedItem.toString()
             val selectedSeats = seatsSpinner.selectedItem.toString()
             val selectedColor = colorSpinner.selectedItem.toString()
             val carCompany = companyEditText.text.toString()
             val carPrice = priceEditText.text.toString()
 
-            // Display the message
-            val message = "Car added successfully!\nType: $selectedCarType\nSeats: $selectedSeats\nColor: $selectedColor\nCompany: $carCompany\nPrice per day: $carPrice"
-            Snackbar.make(view, message, Snackbar.LENGTH_LONG).show()
+            if (carCompany.isEmpty() || carPrice.isEmpty()) {
+                Snackbar.make(view, "Please fill all fields", Snackbar.LENGTH_LONG).show()
+            } else {
+                val newCar = Car(selectedCarType, selectedSeats, selectedColor, carCompany, carPrice)
+                sharedViewModel.addCar(newCar)
+
+                Snackbar.make(view, "Car added successfully!", Snackbar.LENGTH_LONG).show()
+            }
         }
 
         return view

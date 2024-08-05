@@ -1,9 +1,11 @@
 package com.example.rentacar
 
 data class Car(
-    val typeOfCar: String,
-    val numberOfSeats: String,
-    val carColor: String,
-    val carCompany: String,
-    val pricePerDay: String
+    val type: String = "",
+    val seats: String = "",
+    val color: String = "",
+    val company: String = "",
+    val price: String = "",
+    var id: String = ""
 )
+

@@ -29,7 +29,6 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         themeSpinner = view.findViewById(R.id.theme_spinner)
         notificationSwitch = view.findViewById(R.id.notification_switch)
 
-        // Set up theme spinner
         val themes = resources.getStringArray(R.array.theme_options)
         themeSpinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, themes)
         themeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -40,17 +39,14 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                     else -> R.style.AppTheme_Light
                 }
                 requireActivity().setTheme(selectedTheme)
-                // Save the selected theme
                 sharedPreferences.edit().putInt("theme", selectedTheme).apply()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
-        // Set up notification switch
         notificationSwitch.isChecked = sharedPreferences.getBoolean("notifications", true)
         notificationSwitch.setOnCheckedChangeListener { _, isChecked ->
-            // Save the notification preference
             sharedPreferences.edit().putBoolean("notifications", isChecked).apply()
         }
 

@@ -1,26 +1,52 @@
 {
   "project_info": {
-    "project_number": "510730799891",
-    "project_id": "rentacar-9d874",
-    "storage_bucket": "rentacar-9d874.appspot.com"
+    "project_number": "907544264543",
+    "project_id": "rentacar-741d5",
+    "storage_bucket": "rentacar-741d5.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:510730799891:android:0344907d75056609be68e6",
+        "mobilesdk_app_id": "1:907544264543:android:3ba5da73299286d269c0ea",
         "android_client_info": {
           "package_name": "com.example.rentacar"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "907544264543-15hlag4d21ehtprkjpqn3oaa9ds1gv2u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rentacar",
+            "certificate_hash": "b59935f6a9d022c0137d393d41ee8fddba7c520e"
+          }
+        },
+        {
+          "client_id": "907544264543-h4ftb23guhui1udn5dsn0i06esu0tjlf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rentacar",
+            "certificate_hash": "27cf3beadc45af71a61697b603531f0d7ca4c4bf"
+          }
+        },
+        {
+          "client_id": "907544264543-1ivbmq8qsjpgfrh3sbmhg9ng22j2739j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyCahO_Z2LcFj7bI88Lll3Ayw7pB5dVMwlQ"
+          "current_key": "AIzaSyBvaD4F9wZJnA-L4uTzpiGkwYcBx6YfEP4"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907544264543-1ivbmq8qsjpgfrh3sbmhg9ng22j2739j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
