@@ -15,7 +15,7 @@ class HomePageFragment : Fragment(R.layout.homepage) {
 
     private lateinit var greetingsText: TextView
     private lateinit var profilePic: ImageView
-
+    private lateinit var user_phone : TextView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,11 +23,16 @@ class HomePageFragment : Fragment(R.layout.homepage) {
         val view = inflater.inflate(R.layout.homepage, container, false)
         greetingsText = view.findViewById(R.id.greetings)
         profilePic = view.findViewById(R.id.profilePic)
+        user_phone = view.findViewById(R.id.user_phone)
 
-        // Get the current user from FirebaseAuth
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
-            // Use Picasso or another image loading library to load the profile image
+            if (user.phoneNumber != ""){
+                user_phone.text = user.phoneNumber
+            }
+            else {
+                user_phone.text = "NOT PROVIDED"
+            }
             user.photoUrl?.let {
                 Picasso.get().load(it).into(profilePic)
             }
