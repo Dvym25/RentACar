@@ -74,6 +74,11 @@ class MainActivity : AppCompatActivity() {
                 aboutFragment.show(supportFragmentManager, "About Us")
                 true
             }
+            R.id.top_menu_contact_us -> {
+                val contactUs = ContactUsDialogFragment()
+                contactUs.show(supportFragmentManager, "Contact Us")
+                true
+            }
             R.id.sign_out -> {
                 AuthUI.getInstance()
                     .signOut(this)

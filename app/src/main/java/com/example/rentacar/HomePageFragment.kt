@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Picasso
 
 class HomePageFragment : Fragment(R.layout.homepage) {
 
@@ -27,7 +27,10 @@ class HomePageFragment : Fragment(R.layout.homepage) {
         // Get the current user from FirebaseAuth
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
-            profilePic.setImageURI(user.photoUrl)
+            // Use Picasso or another image loading library to load the profile image
+            user.photoUrl?.let {
+                Picasso.get().load(it).into(profilePic)
+            }
             val userName = user.displayName ?: "User"
             greetingsText.text = "Welcome, $userName!"
             Log.d("ProfilePic", "Photo URL: ${user.photoUrl}")

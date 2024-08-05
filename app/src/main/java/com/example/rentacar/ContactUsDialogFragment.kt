@@ -17,7 +17,7 @@ class ContactUsDialogFragment : DialogFragment(R.layout.fragment_contact) {
         val okButton: Button = view.findViewById(R.id.contact_us_ok_button)
 
         // Optionally set the email and phone number programmatically
-        emailTextView.text = "Email: contact@example.com"
+        emailTextView.text = "Email: Test.app.rentacar@gmail.com"
         phoneTextView.text = "Phone: +1234567890"
 
         okButton.setOnClickListener {
