@@ -3,7 +3,7 @@
 
 ## Overview
 
-RentACar is a mobile application that allows users to browse and rent cars. The app includes features for user authentication, theme selection, notifications, and viewing available car options. Built using Kotlin and Firebase, it provides a smooth user experience with a modern design.
+RentACar is a mobile application that allows users to browse and rent cars. The app includes features for user authentication,  notifications, and viewing available car options. Built using Kotlin and Firebase, it provides a smooth user experience with a modern design.
 
 ## Features
 
