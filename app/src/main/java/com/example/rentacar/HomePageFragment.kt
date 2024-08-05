@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.google.firebase.auth.FirebaseAuth
 
 class HomePageFragment : Fragment(R.layout.homepage) {
 
     private lateinit var greetingsText: TextView
     private lateinit var profilePic: ImageView
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,18 +28,24 @@ class HomePageFragment : Fragment(R.layout.homepage) {
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
             profilePic.setImageURI(user.photoUrl)
-        }
-
-        // Check if user is not null and set the greeting text
-        if (user != null) {
             val userName = user.displayName ?: "User"
             greetingsText.text = "Welcome, $userName!"
             Log.d("ProfilePic", "Photo URL: ${user.photoUrl}")
-
         } else {
-            greetingsText.text = "Welcome!"
+            // User is not signed in, show SignInFragment
+            showSignInFragment()
         }
 
         return view
+    }
+
+    private fun showSignInFragment() {
+        val fragmentManager = parentFragmentManager
+        val signInFragment = SignInFragment()
+
+        fragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, signInFragment)
+            .addToBackStack(null)
+            .commit()
     }
 }

@@ -14,11 +14,11 @@ import com.google.firebase.auth.FirebaseAuth
 class MainActivity : AppCompatActivity() {
 
     private val sharedViewModel: SharedViewModel by viewModels()
-
+    val user : String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (FirebaseAuth.getInstance().currentUser == null) {
+        if (FirebaseAuth.getInstance().currentUser == null && user == "") {
             loadFragment(SignInFragment())
         } else {
             loadMainFragment()
@@ -64,6 +64,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.top_menu_rate_app -> {
+                val rateDialogFragment = RateAppDialogFragment()
+                rateDialogFragment.show(supportFragmentManager, "Rate Us")
+                true
+            }
+            R.id.top_menu_about -> {
+                val aboutFragment = AboutDialogFragment()
+                aboutFragment.show(supportFragmentManager, "About Us")
+                true
+            }
             R.id.sign_out -> {
                 AuthUI.getInstance()
                     .signOut(this)
@@ -75,4 +85,5 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
 }
