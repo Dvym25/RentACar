@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 
 class AddVehicleFragment : Fragment(R.layout.fragment_add_vehicle) {
 
@@ -59,15 +60,18 @@ class AddVehicleFragment : Fragment(R.layout.fragment_add_vehicle) {
             val selectedColor = colorSpinner.selectedItem.toString()
             val carCompany = companyEditText.text.toString()
             val carPrice = priceEditText.text.toString()
+            val ownerId = FirebaseAuth.getInstance().uid.toString()
 
-            if (carCompany.isEmpty() || carPrice.isEmpty()) {
-                Snackbar.make(view, "Please fill all fields", Snackbar.LENGTH_LONG).show()
+            if (ownerId.isNullOrEmpty()) {
+                Snackbar.make(view, "User is not authenticated", Snackbar.LENGTH_LONG).show()
             } else {
-                val newCar = Car(selectedCarType, selectedSeats, selectedColor, carCompany, carPrice)
+                // Proceed with adding the car
+                val newCar = Car(selectedCarType, selectedSeats, selectedColor, carCompany, carPrice, ownerId)
                 sharedViewModel.addCar(newCar)
 
                 Snackbar.make(view, "Car added successfully!", Snackbar.LENGTH_LONG).show()
             }
+
         }
 
         return view
