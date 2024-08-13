@@ -1,6 +1,9 @@
+// CarAdapter.kt
 package com.example.rentacar
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +23,6 @@ class CarAdapter(
         val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.list_item_car, parent, false)
         val car = carList[position]
 
-        // Get the current user's ID
         val currentUserId = FirebaseAuth.getInstance().uid
         Log.d("CarAdapter", "Current logged in ID: $currentUserId")
         Log.d("CarAdapter", "POST Owner ID: ${car.ownerId}")
@@ -30,18 +32,18 @@ class CarAdapter(
         view.findViewById<TextView>(R.id.textViewCarColor).text = "Colors:         " + car.color
         view.findViewById<TextView>(R.id.textViewCarCompany).text = "Company:   " + car.company
         view.findViewById<TextView>(R.id.textViewCarPrice).text = "Price:           " + "$" + car.price + " /Day"
+        view.findViewById<TextView>(R.id.textViewContactNumber).text = "Contact:      " + car.contact
 
-        // Find the delete button
-        val deleteButton: ImageButton = view.findViewById(R.id.buttonDelete)
-
-        // Check if the current user is the owner of the car
-        if (car.ownerId == currentUserId) {
-            deleteButton.visibility = View.VISIBLE
-            deleteButton.setOnClickListener {
-                onDeleteClick(car.id)
+        view.findViewById<TextView>(R.id.textViewContactNumber).setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL).apply {
+                data = Uri.parse("tel:${car.contact}")
             }
-        } else {
-            deleteButton.visibility = View.GONE
+            context.startActivity(intent)
+        }
+
+        val deleteButton: ImageButton = view.findViewById(R.id.buttonDelete)
+        deleteButton.setOnClickListener {
+            onDeleteClick(car.id)
         }
 
         return view

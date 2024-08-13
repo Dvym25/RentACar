@@ -21,7 +21,6 @@ class SearchVehicleFragment : Fragment(R.layout.fragment_search_vehicle) {
 
         sharedViewModel.cars.observe(viewLifecycleOwner) { carList ->
             val adapter = CarAdapter(requireContext(), carList) { carId ->
-                // Handle the delete action
                 sharedViewModel.deleteCar(carId)
                 Toast.makeText(requireContext(), "Car deleted", Toast.LENGTH_SHORT).show()
             }

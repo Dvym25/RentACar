@@ -7,6 +7,7 @@ data class Car(
     val company: String = "",
     val price: String = "",
     var id: String = "",
+    val contact: String = "",
     val ownerId: String? = null
 )
 

@@ -33,6 +33,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Car Price" />
+
+    <TextView
+        android:id="@+id/textViewContactNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact" />
+
     <ImageButton
         android:id="@+id/buttonDelete"
         android:src="@drawable/ic_delete"

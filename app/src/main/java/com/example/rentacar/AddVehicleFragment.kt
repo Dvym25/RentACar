@@ -52,7 +52,7 @@ class AddVehicleFragment : Fragment(R.layout.fragment_add_vehicle) {
 
         val companyEditText: EditText = view.findViewById(R.id.editTextCompany)
         val priceEditText: EditText = view.findViewById(R.id.editTextPrice)
-
+        val contactNo : EditText = view.findViewById(R.id.editTextPhoneNumber)
         val addButton: Button = view.findViewById(R.id.button)
         addButton.setOnClickListener {
             val selectedCarType = carTypeSpinner.selectedItem.toString()
@@ -60,13 +60,23 @@ class AddVehicleFragment : Fragment(R.layout.fragment_add_vehicle) {
             val selectedColor = colorSpinner.selectedItem.toString()
             val carCompany = companyEditText.text.toString()
             val carPrice = priceEditText.text.toString()
+            val contact = contactNo.text.toString()
             val ownerId = FirebaseAuth.getInstance().uid.toString()
 
             if (ownerId.isNullOrEmpty()) {
                 Snackbar.make(view, "User is not authenticated", Snackbar.LENGTH_LONG).show()
             } else {
-                // Proceed with adding the car
-                val newCar = Car(selectedCarType, selectedSeats, selectedColor, carCompany, carPrice, ownerId)
+
+                val newCar = Car(
+                    type = selectedCarType,
+                    seats = selectedSeats,
+                    color = selectedColor,
+                    company = carCompany,
+                    price = carPrice,
+                    contact = contactNo.text.toString(),
+                    ownerId = ownerId
+                )
+
                 sharedViewModel.addCar(newCar)
 
                 Snackbar.make(view, "Car added successfully!", Snackbar.LENGTH_LONG).show()
